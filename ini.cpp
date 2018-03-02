@@ -100,13 +100,19 @@ void Ini::m_setValue(QString group, QString key, QVariant value)
     m_ini->sync();
 }
 
+void Ini::m_setValueWithoutSync(QString group, QString key, QVariant value)
+{
+    m_ini->setValue(getKey(group, key), value);
+}
+
 void Ini::m_saveGeometry(QWidget *widget, QString name)
 {
-    m_setValue(name, "x", widget->window()->x());
-    m_setValue(name, "y", widget->window()->y());
-    m_setValue(name, "width", widget->window()->width());
-    m_setValue(name, "height", widget->window()->height());
-    m_setValue(name, "maximized", widget->window()->isMaximized());
+    m_setValueWithoutSync(name, "x", widget->window()->x());
+    m_setValueWithoutSync(name, "y", widget->window()->y());
+    m_setValueWithoutSync(name, "width", widget->window()->width());
+    m_setValueWithoutSync(name, "height", widget->window()->height());
+    m_setValueWithoutSync(name, "maximized", widget->window()->isMaximized());
+    m_ini->sync();
 }
 
 void Ini::m_loadGeometry(QWidget *widget, QString name)

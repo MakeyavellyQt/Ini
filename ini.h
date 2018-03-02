@@ -28,6 +28,7 @@ protected:
 
     QVariant m_getValue(QString group, QString key, QVariant defaultValue = QVariant());
     void m_setValue(QString group, QString key, QVariant value);
+    void m_setValueWithoutSync(QString group, QString key, QVariant value);
 
     void m_saveGeometry(QWidget *widget, QString name);
     void m_loadGeometry(QWidget *widget, QString name);
