@@ -3,7 +3,7 @@
 
 #include "ini.h"
 
-Ini *Ini::m_singleton = 0x0;
+Ini *Ini::m_singleton = nullptr;
 
 
 Ini::Ini(QObject *parent) :
@@ -56,9 +56,19 @@ void Ini::saveGeometry(QWidget *widget, QString name)
     Ini::get()->m_saveGeometry(widget, name);
 }
 
+void Ini::saveGeometry(QWidget *widget)
+{
+    Ini::saveGeometry(widget, widget->objectName());
+}
+
 void Ini::loadGeometry(QWidget *widget, QString name)
 {
     Ini::get()->m_loadGeometry(widget, name);
+}
+
+void Ini::loadGeometry(QWidget *widget)
+{
+    Ini::loadGeometry(widget, widget->objectName());
 }
 
 void Ini::saveMenu(QMenu *menu, QString name)

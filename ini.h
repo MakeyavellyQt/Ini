@@ -6,6 +6,7 @@
 #include <QSize>
 #include <QRect>
 #include <QMenuBar>
+#include <QSplitter>
 
 class Ini : public QObject
 {
@@ -16,7 +17,9 @@ public:
     static void setValue(QString group, QString key, QVariant value);
 
     static void saveGeometry(QWidget *widget, QString name);
+    static void saveGeometry(QWidget *widget);
     static void loadGeometry(QWidget *widget, QString name);
+    static void loadGeometry(QWidget *widget);
 
     static void saveMenu(QMenu *menu, QString name);
     static void loadMenu(QMenu *menu, QString name);
@@ -45,7 +48,7 @@ private:
     QSize maxSize;
     QRect defaultRect;
 
-    explicit Ini(QObject *parent = 0);
+    explicit Ini(QObject *parent = nullptr);
     ~Ini();
 
     QString getKey(QString group, QString key);
